@@ -1,8 +1,8 @@
-interface IsColor {
+interface IsPalette {
     paletteName: string;
     id: string;
     emoji: string;
     colors: { name: string; color: string; }[];
 }
 
-export default IsColor
+export default IsPalette

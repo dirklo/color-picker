@@ -1,6 +1,6 @@
-import IsColor from './components/IsColor'
+import IsPalette from './components/IsPalette'
 
-const colors: IsColor[] = [
+const colors: IsPalette[] = [
     {
       paletteName: "Material UI Colors",
       id: "material-ui-colors",
