@@ -1,11 +1,17 @@
+import type { FC } from 'react'
 import React from 'react'
-import seedPalettes from '../seedPalettes'
 import IsPalette from './IsPalette'
 
-const Palette = (palette: IsPalette) => { 
+interface PaletteProps {
+    palette: IsPalette
+}
+
+const Palette: FC<PaletteProps> = ({ palette }): JSX.Element => { 
     return (
-        <div>
-            {palette.paletteName}
+        <div className='Palette'>
+            <div className='Palette-colors'>
+
+            </div>
         </div>
     )
 }
