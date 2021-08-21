@@ -6,7 +6,7 @@ import styles from '../styles/Home.module.css'
 const Home: NextPage = () => {
   return (
     <div className={styles.container}>
-      <Palette palette={seedPalettes[4]} />
+      <Palette palette={seedPalettes[5]} />
     </div>
   )
 }
