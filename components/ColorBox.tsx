@@ -9,9 +9,16 @@ interface ColorBoxProps {
 const ColorBox: FC<ColorBoxProps> = ({ color }) => {
     return (
         <div style={{ background: color.color }} className={styles.ColorBox}>
-            <span>{color.name}</span>
-            <br />
-            <span>MORE...</span>
+            <div className={styles.copy_container}>
+
+            </div>
+            <div className={styles.box_content}>
+                <span>{color.name}</span>
+            </div>
+            <button className={styles.copy_button}>
+                Copy
+            </button>
+            <span className={styles.see_more}>More</span>
         </div>
     )
 }
