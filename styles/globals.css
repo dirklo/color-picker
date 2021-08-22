@@ -14,3 +14,25 @@ a {
 * {
   box-sizing: border-box;
 }
+
+
+.rc-slider > .rc-slider-track {
+  background-color: transparent;
+}
+
+.rc-slider > .rc-slider-rail {
+  height: 8px;
+}
+
+.rc-slider > .rc-slider-handle:active,
+.rc-slider > .rc-slider-handle:hover,
+.rc-slider > .rc-slider-handle:focus,
+.rc-slider > .rc-slider-handle {
+    background-color: green;
+    outline: none;
+    border: 2px solid green;
+    box-shadow: none;
+    width: 13px;
+    height: 13px;
+    margin-top: -3px;
+}

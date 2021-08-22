@@ -18,16 +18,19 @@ const Palette: FC<PaletteProps> = ({ palette }): JSX.Element => {
         <ColorBox key={i} color={{name: color.name, color: color.hex}} />
     )
     
-    console.log('rerendering');
     return (
         <div className={styles.Palette}>
-            <Slider 
-                defaultValue={level} 
-                min={100}
-                max={900}
-                step={100}
-                onAfterChange={(value: number) => setLevel(value)}
-            />
+            <div
+                className={styles.slider}
+            >
+                <Slider 
+                    defaultValue={level} 
+                    min={100}
+                    max={900}
+                    step={100}
+                    onAfterChange={(value: number) => setLevel(value)}
+                />
+            </div>
             <div className={styles.Palette_colors}>
                 {colorBoxes}
             </div>
