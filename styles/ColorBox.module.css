@@ -59,3 +59,56 @@
     line-height: 30px;
     text-transform: uppercase;
 }
+
+.copy_overlay {
+    opacity: 0;
+    z-index: 0;
+    height: 100%;
+    width: 100%;
+    transform: scale(0.1);
+    transition: transform 0.6s ease-in-out;
+}
+
+.copy_overlay.show {
+    opacity: 1;
+    transform: scale(50);
+    z-index: 10;
+    position: absolute;
+}
+
+.copy_msg {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 4rem;
+    transform: scale(0.1);
+    opacity: 0;
+    color: white;
+}
+
+.copy_msg.show {
+    opacity: 1;
+    transform: scale(1);
+    z-index: 25;
+    transition: all 0.4s ease-in-out;
+    transition-delay: 0.3s;
+}
+
+.copy_msg h1 {
+    font-weight: 400;
+    text-shadow: 1px 2px black;
+    background: rgba(255, 255, 255, 0.2);
+    width: 100%;
+    margin-bottom: 0;
+    padding: 1rem;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.copy_msg p {
+    font-size: 2rem;
+    font-weight: 100;
+}
