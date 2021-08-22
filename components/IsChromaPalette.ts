@@ -10,7 +10,7 @@ interface IsChromaPalette {
             hex: string;
             rgb: string;
             rgba: string;
-        }
+        }[]
     }
 }
 

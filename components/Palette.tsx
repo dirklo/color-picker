@@ -1,20 +1,35 @@
 import type { FC } from 'react'
-import React from 'react'
+import React, { useState } from 'react'
 import styles from '../styles/Palette.module.css'
 import ColorBox from './ColorBox'
-import IsPalette from './IsPalette'
+import IsChromaPalette from './IsChromaPalette'
+import Slider from 'rc-slider';
+import 'rc-slider/assets/index.css';
 
 interface PaletteProps {
-    palette: IsPalette
+    palette: IsChromaPalette
 }
 
 const Palette: FC<PaletteProps> = ({ palette }): JSX.Element => { 
+
+    const [ level, setLevel ] = useState(500)
+
+    const colorBoxes = palette.colors[level].map((color, i) => 
+        <ColorBox key={i} color={{name: color.name, color: color.hex}} />
+    )
+    
+    console.log('rerendering');
     return (
         <div className={styles.Palette}>
+            <Slider 
+                defaultValue={level} 
+                min={100}
+                max={900}
+                step={100}
+                onAfterChange={(value: number) => setLevel(value)}
+            />
             <div className={styles.Palette_colors}>
-                {palette.colors.map((color, i) => 
-                    <ColorBox key={i} color={color}/>
-                )}
+                {colorBoxes}
             </div>
         </div>
     )

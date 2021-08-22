@@ -5,10 +5,9 @@ import styles from '../styles/Home.module.css'
 import generatePalette from '../helpers/colorHelpers'
 
 const Home: NextPage = () => {
-  console.log(generatePalette(seedPalettes[5]))
   return (
     <div className={styles.container}>
-      <Palette palette={seedPalettes[5]} />
+      <Palette palette={generatePalette(seedPalettes[5])} />
     </div>
   )
 }
