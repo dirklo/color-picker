@@ -2,12 +2,14 @@ import type { FC } from 'react'
 import React, {  useState, useEffect } from 'react'
 import styles from '../styles/ColorBox.module.css'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
+import IsChromaColor from './IsChromaColor'
 
 interface ColorBoxProps {
-    color: {name: string; color: string}
+    color: IsChromaColor;
+    format: string;
 }
 
-const ColorBox: FC<ColorBoxProps> = ({ color }) => {
+const ColorBox: FC<ColorBoxProps> = ({ color, format }) => {
     const [ copied, setCopied ] = useState(false)
 
     useEffect(() => {
@@ -18,21 +20,32 @@ const ColorBox: FC<ColorBoxProps> = ({ color }) => {
 
     const showClass: string = copied ? styles.show : '' 
 
+    const setFormat = () => {
+        switch (format) {
+            case 'hex':
+                return color.hex
+            case 'rgb':
+                return color.rgb
+            case 'rgba':
+                return color.rgba
+        }
+    }
+
     return (
         <CopyToClipboard 
-            text={color.color}
+            text={color.hex}
             onCopy={() => setCopied(true)}
         >
-            <div style={{ background: color.color }} className={styles.ColorBox}>
+            <div style={{ background: setFormat()}} className={styles.ColorBox}>
                 <div 
-                    style={{ background: color.color }} 
+                    style={{ background: setFormat() }} 
                     className={`${styles.copy_overlay} ${showClass}`}
                 />
                 <div
                     className={`${styles.copy_msg} ${showClass}`}
                 >
                     <h1>Copied!</h1>
-                    <p>{color.color}</p>
+                    <p>{setFormat()}</p>
                 </div>
                 <div className={styles.copy_container}>
 
