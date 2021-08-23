@@ -18,15 +18,20 @@ const NavBar: FC<NavBarProps> = ({ level, setLevel }): JSX.Element => {
                 <a href="#">reactcolorpicker</a>
             </div>
             <div
-                className={styles.slider}
+                className={styles.slider_container}
             >
-                <Slider 
-                    defaultValue={level} 
-                    min={100}
-                    max={900}
-                    step={100}
-                    onAfterChange={(value: number) => setLevel(value)}
-                />
+                <span>Level: {level}</span>
+                <div
+                    className={styles.slider}
+                >
+                    <Slider 
+                        defaultValue={level} 
+                        min={100}
+                        max={900}
+                        step={100}
+                        onAfterChange={(value: number) => setLevel(value)}
+                    />
+                </div>
             </div>
         </div>
     )
