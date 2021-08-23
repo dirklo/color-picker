@@ -3,8 +3,7 @@ import React, { useState } from 'react'
 import styles from '../styles/Palette.module.css'
 import ColorBox from './ColorBox'
 import IsChromaPalette from './IsChromaPalette'
-import Slider from 'rc-slider';
-import 'rc-slider/assets/index.css';
+import NavBar from './NavBar'
 
 interface PaletteProps {
     palette: IsChromaPalette
@@ -20,17 +19,7 @@ const Palette: FC<PaletteProps> = ({ palette }): JSX.Element => {
     
     return (
         <div className={styles.Palette}>
-            <div
-                className={styles.slider}
-            >
-                <Slider 
-                    defaultValue={level} 
-                    min={100}
-                    max={900}
-                    step={100}
-                    onAfterChange={(value: number) => setLevel(value)}
-                />
-            </div>
+            <NavBar level={level} setLevel={setLevel} />
             <div className={styles.Palette_colors}>
                 {colorBoxes}
             </div>

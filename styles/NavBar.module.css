@@ -1,0 +1,9 @@
+.nav_bar {
+    width: 100%;
+}
+
+.slider {
+    width: 340px;
+    margin: 0 10px;
+    display: inline-block;
+}
