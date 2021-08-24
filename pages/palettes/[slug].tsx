@@ -1,18 +1,26 @@
 import type { ChangeEvent, FC } from 'react'
 import React, { useState } from 'react'
-import styles from '../styles/Palette.module.css'
-import ColorBox from './ColorBox'
-import IsChromaPalette from './IsChromaPalette'
-import NavBar from './NavBar'
+import { useRouter } from 'next/router'
+import styles from '../../styles/Palette.module.css'
+import ColorBox from '../../components/ColorBox'
+import IsChromaPalette from '../../components/IsChromaPalette'
+import NavBar from '../../components/NavBar'
+import seedPalettes from '../../seedPalettes'
+import generatePalette from '../../helpers/colorHelpers'
+import IsPalette from '../../components/IsPalette'
 
-interface PaletteProps {
-    palette: IsChromaPalette
-}
-
-const Palette: FC<PaletteProps> = ({ palette }): JSX.Element => { 
-
+const Palette: FC = (): JSX.Element => { 
     const [ level, setLevel ] = useState(500)
     const [ format, setFormat ] = useState('hex')
+
+    const router = useRouter()
+
+    function findPalette(): IsChromaPalette {
+        const foundPalette: IsPalette = seedPalettes.filter(palette => palette.id === router.query.slug)[0]
+        return generatePalette(foundPalette)
+    }
+
+    const palette: IsChromaPalette = findPalette()
 
     const colorBoxes = palette.colors[level].map((color, i) => 
         <ColorBox key={i} color={color} format={format} />

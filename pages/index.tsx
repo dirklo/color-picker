@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import Palette from '../components/Palette'
+import Palette from './palettes/[slug]'
 import seedPalettes from '../seedPalettes'
 import styles from '../styles/Home.module.css'
 import generatePalette from '../helpers/colorHelpers'
@@ -7,7 +7,7 @@ import generatePalette from '../helpers/colorHelpers'
 const Home: NextPage = () => {
   return (
     <div className={styles.container}>
-      <Palette palette={generatePalette(seedPalettes[5])} />
+      {/* <Palette palette={generatePalette(seedPalettes[5])} /> */}
     </div>
   )
 }
