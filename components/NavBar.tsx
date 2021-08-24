@@ -8,6 +8,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Snackbar from '@material-ui/core/Snackbar';
 import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
+import Link from 'next/link'
 
 
 interface NavBarProps {
@@ -31,7 +32,7 @@ const NavBar: FC<NavBarProps> = ({ level, setLevel, handleChange, format }): JSX
             <div
                 className={styles.logo}
             >
-                <a href="#">reactcolorpicker</a>
+                <Link href="/">reactcolorpicker</Link>
             </div>
             <div
                 className={styles.slider_container}

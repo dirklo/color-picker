@@ -11,12 +11,12 @@ const PaletteList: FC<PaletteListProps> = ({ palettes }): JSX.Element => {
     return (
         <div className='palette_list'>
             {palettes.map(palette => 
-                <>
-                    <Link href={`/palettes/${palette.id}`} key={palette.id}>
+                <p key={palette.id}>
+                    <Link href={`/palettes/${palette.id}`}>
                         {palette.paletteName}
                     </Link>
-                    <br />
-                </>
+                    
+                </p>
             )}
         </div>  
     )
