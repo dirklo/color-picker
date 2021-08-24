@@ -34,6 +34,10 @@ const Palette: FC<PaletteProps> = ({ palette }): JSX.Element => {
             <div className={styles.Palette_colors}>
                 {colorBoxes}
             </div>
+            <footer className={styles.palette_footer}>
+                <span>{palette.paletteName}</span>
+                <span className={styles.emoji}>{palette.emoji}</span>
+            </footer>
         </div>
     )
 }
