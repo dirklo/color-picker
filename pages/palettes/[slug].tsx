@@ -1,13 +1,11 @@
 import type { ChangeEvent, FC } from 'react'
 import React, { useState } from 'react'
-import { useRouter } from 'next/router'
 import styles from '../../styles/Palette.module.css'
 import ColorBox from '../../components/ColorBox'
 import IsChromaPalette from '../../components/IsChromaPalette'
 import NavBar from '../../components/NavBar'
 import seedPalettes from '../../seedPalettes'
 import generatePalette from '../../helpers/colorHelpers'
-import IsPalette from '../../components/IsPalette'
 
 type PaletteProps = {
     palette: IsChromaPalette;
@@ -49,7 +47,6 @@ export function getServerSideProps(context: any) {
     const slug = context.query.slug
     const palette = seedPalettes.filter(palette => palette.id === slug)[0]
     const chromaPalette = generatePalette(palette)
-
     return { props: { palette: chromaPalette }  }
 }
 
