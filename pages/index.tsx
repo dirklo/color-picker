@@ -1,15 +1,20 @@
 import type { NextPage } from 'next'
-import Palette from './palettes/[slug]'
 import seedPalettes from '../seedPalettes'
 import styles from '../styles/Home.module.css'
-import generatePalette from '../helpers/colorHelpers'
+import Link from 'next/link'
 
 const Home: NextPage = () => {
   return (
-    <div className={styles.container}>
-      {/* <Palette palette={generatePalette(seedPalettes[5])} /> */}
+    <div>
+        <ul>
+            {seedPalettes.map((palette) => 
+                <li key={palette.id}>
+                    <Link href={`/palettes/${palette.id}`}>{palette.paletteName}</Link>
+                </li>
+            )}
+        </ul>
     </div>
-  )
+)
 }
 
 export default Home
