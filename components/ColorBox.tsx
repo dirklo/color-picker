@@ -1,6 +1,6 @@
 import type { FC } from 'react'
 import React, {  useState, useEffect } from 'react'
-import styles from '../styles/ColorBox.module.css'
+import styles from '../styles/ColorBox.module.scss'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import IsChromaColor from './IsChromaColor'
 

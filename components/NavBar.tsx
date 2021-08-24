@@ -1,6 +1,6 @@
 import type { ChangeEvent, FC } from 'react' 
 import React, { useState } from 'react'
-import styles from '../styles/NavBar.module.css'
+import styles from '../styles/NavBar.module.scss'
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import Select from '@material-ui/core/Select';

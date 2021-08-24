@@ -16,7 +16,8 @@
     "rc-slider": "^9.7.2",
     "react": "17.0.2",
     "react-copy-to-clipboard": "^5.0.4",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "sass": "^1.38.1"
   },
   "devDependencies": {
     "@types/chroma-js": "^2.1.3",
