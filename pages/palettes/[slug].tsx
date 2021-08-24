@@ -9,18 +9,13 @@ import seedPalettes from '../../seedPalettes'
 import generatePalette from '../../helpers/colorHelpers'
 import IsPalette from '../../components/IsPalette'
 
-const Palette: FC = (): JSX.Element => { 
+type PaletteProps = {
+    palette: IsChromaPalette;
+}
+
+const Palette: FC<PaletteProps> = ({ palette }): JSX.Element => { 
     const [ level, setLevel ] = useState(500)
     const [ format, setFormat ] = useState('hex')
-
-    const router = useRouter()
-
-    function findPalette(): IsChromaPalette {
-        const foundPalette: IsPalette = seedPalettes.filter(palette => palette.id === router.query.slug)[0]
-        return generatePalette(foundPalette)
-    }
-
-    const palette: IsChromaPalette = findPalette()
 
     const colorBoxes = palette.colors[level].map((color, i) => 
         <ColorBox key={i} color={color} format={format} />
@@ -48,6 +43,14 @@ const Palette: FC = (): JSX.Element => {
             </footer>
         </div>
     )
+}
+
+export function getServerSideProps(context: any) {
+    const slug = context.query.slug
+    const palette = seedPalettes.filter(palette => palette.id === slug)[0]
+    const chromaPalette = generatePalette(palette)
+
+    return { props: { palette: chromaPalette }  }
 }
 
 export default Palette
