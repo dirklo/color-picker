@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import seedPalettes from '../seedPalettes'
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Home.module.scss'
 import Link from 'next/link'
 import PaletteList from '../components/PaletteList'
 

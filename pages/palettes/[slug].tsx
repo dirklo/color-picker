@@ -1,6 +1,6 @@
 import type { ChangeEvent, FC } from 'react'
 import React, { useState } from 'react'
-import styles from '../../styles/Palette.module.css'
+import styles from '../../styles/Palette.module.scss'
 import ColorBox from '../../components/ColorBox'
 import IsChromaPalette from '../../components/IsChromaPalette'
 import NavBar from '../../components/NavBar'
