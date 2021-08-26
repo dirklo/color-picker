@@ -3,6 +3,7 @@ import React from 'react'
 import IsPalette from './IsPalette'
 import MiniPalette from './MiniPalette'
 import styles from '../styles/PaletteList.module.scss'
+import Link from 'next/link'
 
 type PaletteListProps = {
     palettes: IsPalette[];
@@ -24,7 +25,13 @@ const PaletteList: FC<PaletteListProps> = ({ palettes }): JSX.Element => {
                 className={styles.palettes}
             >
                 {palettes.map(palette => 
-                    <MiniPalette palette={palette} key={palette.id}/>
+                    <Link href={`/palettes/${palette.id}`} key={palette.id} passHref>
+                        <a>
+                            <MiniPalette 
+                                palette={palette}
+                            />
+                        </a>
+                    </Link>
                 )}
             </div>
         </div>  

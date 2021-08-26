@@ -2,7 +2,7 @@ import type { FC } from 'react'
 import React from 'react'
 import IsPalette from './IsPalette'
 import styles from '../styles/MiniPalette.module.scss'
-import { Divider } from '@material-ui/core'
+import { useRouter } from 'next/router'
 
 type MiniPaletteProps = {
     palette: IsPalette;
@@ -15,10 +15,20 @@ const MiniPalette: FC<MiniPaletteProps> = ({ palette }) => {
             style={{ backgroundColor: color.color }}
             className={styles.mini_color} 
             key={color.name}
-        />)
+        />
+    )
+
+    const router = useRouter();
+    
+    const handleClick = (e: React.MouseEvent) => {
+        router.push(`/palettes/${palette.id}`)
+    }
     
     return (
-        <div className={styles.mini_palette}>
+        <div 
+            className={styles.mini_palette}
+            onClick={(e: React.MouseEvent) => handleClick(e)}
+        >
             <div 
                 className={styles.colors}
             >
