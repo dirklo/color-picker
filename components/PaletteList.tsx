@@ -15,24 +15,24 @@ const PaletteList: FC<PaletteListProps> = ({ palettes }): JSX.Element => {
             <div
                 className={styles.container}
             >
-            <nav
-                className={styles.nav}
-            >
-                <h2>React Colors</h2>
-            </nav>
-            </div>
-            <div
-                className={styles.palettes}
-            >
-                {palettes.map(palette => 
-                    <Link href={`/palettes/${palette.id}`} key={palette.id} passHref>
-                        <a>
-                            <MiniPalette 
-                                palette={palette}
-                            />
-                        </a>
-                    </Link>
-                )}
+                <nav
+                    className={styles.nav}
+                >
+                    <h2>React Colors</h2>
+                </nav>
+                <div
+                    className={styles.palettes}
+                    >
+                    {palettes.map(palette => 
+                        <Link href={`/palettes/${palette.id}`} key={palette.id} passHref>
+                            <a>
+                                <MiniPalette 
+                                    palette={palette}
+                                    />
+                            </a>
+                        </Link>
+                    )}
+                </div>
             </div>
         </div>  
     )

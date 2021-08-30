@@ -8,7 +8,7 @@ type MiniPaletteProps = {
     palette: IsPalette;
 }
 
-const MiniPalette: FC<MiniPaletteProps> = ({ palette }) => {
+const MiniPalette: FC<MiniPaletteProps> = ({ palette }): JSX.Element => {
 
     const miniColorBoxes = palette.colors.map(color => 
         <div 

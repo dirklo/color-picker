@@ -3,6 +3,7 @@
     border: 1px solid black;
     border-radius: 5px;
     padding: 0.5rem;
+    margin-bottom: 2rem;
     position: relative;
     overflow: hidden;
     &:hover {
@@ -14,6 +15,14 @@
         width: 100%;
         border-radius: 5px;
         overflow: hidden;
+        .mini_color {
+            height: 25%;
+            width: 20%;
+            display: inline-block;
+            margin: 0 auto;
+            position: relative;
+            margin-bottom: -3.5px;
+        }
     }
     .title {
         position: relative;
@@ -24,17 +33,9 @@
         color: black;
         padding-top: 0.5rem;
         font-size: 1rem;
-    }
-    .emoji {
-        margin-left: 0.5rem;
-        font-size: 1.5rem;
-    }
-    .mini_color {
-        height: 25%;
-        width: 20%;
-        display: inline-block;
-        margin: 0 auto;
-        position: relative;
-        margin-bottom: -3.5px;
+        .emoji {
+            margin-left: 0.5rem;
+            font-size: 1.5rem;
+        }
     }
 }

@@ -3,6 +3,7 @@ import React, {  useState, useEffect } from 'react'
 import styles from '../styles/ColorBox.module.scss'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import IsChromaColor from './IsChromaColor'
+import { useRouter } from 'next/router'
 
 interface ColorBoxProps {
     color: IsChromaColor;
@@ -11,6 +12,8 @@ interface ColorBoxProps {
 
 const ColorBox: FC<ColorBoxProps> = ({ color, format }) => {
     const [ copied, setCopied ] = useState(false)
+
+    const router = useRouter()
 
     useEffect(() => {
         setTimeout(() => {
@@ -56,7 +59,13 @@ const ColorBox: FC<ColorBoxProps> = ({ color, format }) => {
                 <button className={styles.copy_button}>
                     Copy
                 </button>
-                <span className={styles.see_more}>More</span>
+
+                <span 
+                    className={styles.see_more}
+                    onClick={() => router.push(`${router.asPath}/${color.id}`)}
+                >
+                    More
+                </span>
             </div>
         </CopyToClipboard>
     )

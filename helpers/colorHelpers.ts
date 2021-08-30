@@ -1,6 +1,8 @@
 import chroma from 'chroma-js'
 import IsChromaPalette from '../components/IsChromaPalette';
+import IsChromaColor from '../components/IsChromaColor';
 import IsPalette from '../components/IsPalette'
+import IsSinglePalette from '../components/IsSinglePalette';
 
 const levels: number[] = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
 
@@ -35,6 +37,28 @@ function generatePalette(starterPalette: IsPalette): IsChromaPalette {
     }
     return newPalette
 }
+
+export function generateSinglePalette(starterPalette: IsChromaPalette, matchColorId: string): IsSinglePalette {
+    const colors: {[key: number]: IsChromaColor[]} = starterPalette.colors
+    let singlePalette: any = {
+        paletteName: starterPalette.paletteName,
+        id: starterPalette.id,
+        emoji: starterPalette.emoji,
+        colorName: matchColorId,
+        shades: []
+    }
+    for (let key in colors) {
+        const allColors = colors[key]
+        for (let color of allColors) {
+            if (color.id === matchColorId) {
+                singlePalette.shades.push(color)
+            }
+        }
+    }
+
+    return singlePalette
+}
+
 function getRange(hexColor: string) : [string, string, string] {
     const end: string = 'fff';
     return [

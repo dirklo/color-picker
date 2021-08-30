@@ -6,24 +6,23 @@
     align-items: center;
     justify-content: center;
     .container {
-        width: 60%;
         display: flex;
-        align-items: flex-end;
+        align-items: center;
         flex-direction: column;
         flex-wrap: wrap;
-    }
-    .nav {
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-        color: white;
-    }
-    .palettes {
-        box-sizing: border-box;
-        width: 1005;
-        display: grid;
-        grid-template-columns: repeat(3, 30%);
-        grid-gap: 5%;
+        overflow: hidden;
+        .nav {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            color: white;
+        }
+        .palettes {
+            box-sizing: border-box;
+            display: grid;
+            grid-template-columns: repeat(3, 30%);
+            grid-column-gap: 5%;
+        }
     }
 }
 
