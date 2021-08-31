@@ -25,13 +25,9 @@ function generatePalette(starterPalette: IsPalette): IsChromaPalette {
     for (let color of starterPalette.colors) {
         let scale = generateScale(color.color, 10).reverse()
         for (let i in scale) {
-            newPalette.colors[levels[i]].push({
-                name: `${color.name} ${levels[i]}`,
-                id: createColorId(color.name),
-                hex: scale[i],
-                rgb: chroma(scale[i]).css(), 
-                rgba: chroma(scale[i]).css().replace('rgb', 'rgba').replace(')', ',1.0)') 
-            })
+            newPalette.colors[levels[i]].push(
+                createShade(color.name, levels[i], scale[i])
+            )
         }
     }
     return newPalette
@@ -50,16 +46,23 @@ export function generateSinglePalette(starterPalette: IsPalette, matchColorId: s
 
     let scale = generateScale(matchedColor.color, 10).reverse()
         for (let i in scale) {
-            singlePalette.shades.push({
-                name: `${matchedColor.name} ${levels[i]}`,
-                id: createColorId(matchedColor.name),
-                hex: scale[i],
-                rgb: chroma(scale[i]).css(), 
-                rgba: chroma(scale[i]).css().replace('rgb', 'rgba').replace(')', ',1.0)') 
-            })
+            singlePalette.shades.push(
+                createShade(matchedColor.name, levels[i], scale[i])
+            )
         }
 
     return singlePalette
+}
+
+function createShade(colorName: string, level: number, scaleItem: string) {
+    const shade = {
+        name: `${colorName} ${level}`,
+        id: createColorId(colorName),
+        hex: scaleItem,
+        rgb: chroma(scaleItem).css(), 
+        rgba: chroma(scaleItem).css().replace('rgb', 'rgba').replace(')', ',1.0)') 
+    }
+    return shade
 }
 
 function createColorId(colorName: string): string {
