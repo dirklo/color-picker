@@ -15,8 +15,8 @@ const SinglePalette: FC<SinglePaletteProps> = ({ palette }): JSX.Element => {
 
     const [ format, setFormat ] = useState('hex')
 
-    const colorBoxes = palette.shades.map((shade, i) => 
-        <ColorBox key={i} color={shade} format={format} singleColor={false}/>
+    const colorBoxes = palette.shades.slice(1).map((shade, i) => 
+        <ColorBox key={i} color={shade} format={format} singleColor={true}/>
     )
     
     const changeFormat = (event: ChangeEvent<{ value: unknown }>): void => {
@@ -26,8 +26,13 @@ const SinglePalette: FC<SinglePaletteProps> = ({ palette }): JSX.Element => {
     return (
         <div className={styles.single_palette}>
             <SingleNavBar handleChange={changeFormat} format={format}/>
-            <div className={styles.Palette_colors}>
+            <div className={styles.palette_colors}>
                 {colorBoxes}
+                <div 
+                    className={styles.back_button}
+                >  
+                    GO BACK
+                </div>
             </div>
             <footer className={styles.palette_footer}>
                 <span>{palette.paletteName}</span>
