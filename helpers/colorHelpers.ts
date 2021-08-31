@@ -1,6 +1,5 @@
 import chroma from 'chroma-js'
 import IsChromaPalette from '../components/IsChromaPalette';
-import IsChromaColor from '../components/IsChromaColor';
 import IsPalette from '../components/IsPalette'
 import IsSinglePalette from '../components/IsSinglePalette';
 
@@ -28,7 +27,7 @@ function generatePalette(starterPalette: IsPalette): IsChromaPalette {
         for (let i in scale) {
             newPalette.colors[levels[i]].push({
                 name: `${color.name} ${levels[i]}`,
-                id: color.name.toLowerCase().replace(/ /g, '-'),
+                id: createColorId(color.name),
                 hex: scale[i],
                 rgb: chroma(scale[i]).css(), 
                 rgba: chroma(scale[i]).css().replace('rgb', 'rgba').replace(')', ',1.0)') 
@@ -38,25 +37,33 @@ function generatePalette(starterPalette: IsPalette): IsChromaPalette {
     return newPalette
 }
 
-export function generateSinglePalette(starterPalette: IsChromaPalette, matchColorId: string): IsSinglePalette {
-    const colors: {[key: number]: IsChromaColor[]} = starterPalette.colors
-    let singlePalette: any = {
+export function generateSinglePalette(starterPalette: IsPalette, matchColorId: string): IsSinglePalette {
+    const matchedColor = starterPalette.colors.filter((color) => createColorId(color.name) === matchColorId)[0]
+
+    const singlePalette: IsSinglePalette = {
         paletteName: starterPalette.paletteName,
         id: starterPalette.id,
         emoji: starterPalette.emoji,
-        colorName: matchColorId,
+        colorId: matchColorId,
         shades: []
     }
-    for (let key in colors) {
-        const allColors = colors[key]
-        for (let color of allColors) {
-            if (color.id === matchColorId) {
-                singlePalette.shades.push(color)
-            }
+
+    let scale = generateScale(matchedColor.color, 10).reverse()
+        for (let i in scale) {
+            singlePalette.shades.push({
+                name: `${matchedColor.name} ${levels[i]}`,
+                id: createColorId(matchedColor.name),
+                hex: scale[i],
+                rgb: chroma(scale[i]).css(), 
+                rgba: chroma(scale[i]).css().replace('rgb', 'rgba').replace(')', ',1.0)') 
+            })
         }
-    }
 
     return singlePalette
+}
+
+function createColorId(colorName: string): string {
+    return colorName.toLowerCase().replace(/ /g, '-')
 }
 
 function getRange(hexColor: string) : [string, string, string] {

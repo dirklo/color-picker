@@ -40,7 +40,7 @@ const SinglePalette: FC<SinglePaletteProps> = ({ palette }): JSX.Element => {
 export function getServerSideProps(context: any) {
     const slug: string = context.query.slug[0]
     const palette = seedPalettes.filter(palette => palette.id === slug)[0]
-    const singlePalette = generateSinglePalette(generatePalette(palette), context.query.slug[1])
+    const singlePalette = generateSinglePalette(palette, context.query.slug[1])
     return { props: { palette: singlePalette }  }
 }
 

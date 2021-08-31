@@ -34,7 +34,6 @@ const NavBar: FC<SingleNavBarProps> = ({ handleChange, format }): JSX.Element =>
             <div
                 className={styles.slider_container}
             >
-                {/* <span>Level: {level}</span> */}
                 <div
                     className={styles.slider}
                 >

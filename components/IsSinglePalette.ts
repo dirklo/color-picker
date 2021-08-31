@@ -4,7 +4,7 @@ interface IsSinglePalette {
     paletteName: string;
     id: string;
     emoji: string;
-    colorName: string;
+    colorId: string;
     shades: IsChromaColor[];
 }
 
