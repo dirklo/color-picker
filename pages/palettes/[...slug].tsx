@@ -1,8 +1,8 @@
 import type { ChangeEvent, FC } from 'react'
 import React, { useState } from 'react'
-import styles from '../../styles/MorePalette.module.scss'
+import styles from '../../styles/SinglePalette.module.scss'
 import seedPalettes from '../../seedPalettes'
-import generatePalette, { generateSinglePalette } from '../../helpers/colorHelpers'
+import { generateSinglePalette } from '../../helpers/colorHelpers'
 import isSinglePalette from '../../components/IsSinglePalette'
 import SingleNavBar from '../../components/SingleNavBar'
 import ColorBox from '../../components/ColorBox'
@@ -16,7 +16,7 @@ const SinglePalette: FC<SinglePaletteProps> = ({ palette }): JSX.Element => {
     const [ format, setFormat ] = useState('hex')
 
     const colorBoxes = palette.shades.map((shade, i) => 
-        <ColorBox key={i} color={shade} format={format} />
+        <ColorBox key={i} color={shade} format={format} singleColor={false}/>
     )
     
     const changeFormat = (event: ChangeEvent<{ value: unknown }>): void => {

@@ -8,9 +8,11 @@ import { useRouter } from 'next/router'
 interface ColorBoxProps {
     color: IsChromaColor;
     format: string;
+    singleColor: boolean;
 }
 
-const ColorBox: FC<ColorBoxProps> = ({ color, format }) => {
+const ColorBox: FC<ColorBoxProps> = ({ color, format, singleColor }) => {
+
     const [ copied, setCopied ] = useState(false)
 
     const router = useRouter()
@@ -39,7 +41,7 @@ const ColorBox: FC<ColorBoxProps> = ({ color, format }) => {
             text={color.hex}
             onCopy={() => setCopied(true)}
         >
-            <div style={{ background: setFormat()}} className={styles.ColorBox}>
+            <div style={{ background: setFormat()}} className={singleColor ? styles.ColorBox : styles.single_color_box}>
                 <div 
                     style={{ background: setFormat() }} 
                     className={`${styles.copy_overlay} ${showClass}`}
@@ -60,12 +62,14 @@ const ColorBox: FC<ColorBoxProps> = ({ color, format }) => {
                     Copy
                 </button>
 
-                <span 
-                    className={styles.see_more}
-                    onClick={() => router.push(`${router.asPath}/${color.id}`)}
-                >
-                    More
-                </span>
+                {singleColor && 
+                    <span 
+                        className={styles.see_more}
+                        onClick={() => router.push(`${router.asPath}/${color.id}`)}
+                    >
+                        More
+                    </span>
+                }
             </div>
         </CopyToClipboard>
     )

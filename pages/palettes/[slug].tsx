@@ -16,7 +16,7 @@ const Palette: FC<PaletteProps> = ({ palette }): JSX.Element => {
     const [ format, setFormat ] = useState('hex')
 
     const colorBoxes = palette.colors[level].map((color, i) => 
-        <ColorBox key={i} color={color} format={format} />
+        <ColorBox key={i} color={color} format={format} singleColor={true} />
     )
     
     const changeFormat = (event: ChangeEvent<{ value: unknown }>): void => {
