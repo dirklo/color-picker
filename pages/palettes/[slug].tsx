@@ -6,6 +6,7 @@ import IsChromaPalette from '../../components/IsChromaPalette'
 import NavBar from '../../components/NavBar'
 import seedPalettes from '../../seedPalettes'
 import generatePalette from '../../helpers/colorHelpers'
+import PaletteFooter from '../../components/PaletteFooter'
 
 type PaletteProps = {
     palette: IsChromaPalette;
@@ -35,10 +36,7 @@ const Palette: FC<PaletteProps> = ({ palette }): JSX.Element => {
             <div className={styles.Palette_colors}>
                 {colorBoxes}
             </div>
-            <footer className={styles.palette_footer}>
-                <span>{palette.paletteName}</span>
-                <span className={styles.emoji}>{palette.emoji}</span>
-            </footer>
+            <PaletteFooter paletteName={palette.paletteName} emoji={palette.emoji} />
         </div>
     )
 }
