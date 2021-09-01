@@ -26,7 +26,7 @@ const ColorBox: FC<ColorBoxProps> = ({ color, format, singleColor }) => {
     const showClass: string = copied ? styles.show : '' 
     const singleClass: string = singleColor ? styles.single : ''
 
-    const setFormat = () => {
+    const setFormat = (): string => {
         switch (format) {
             case 'hex':
                 return color.hex
@@ -34,12 +34,14 @@ const ColorBox: FC<ColorBoxProps> = ({ color, format, singleColor }) => {
                 return color.rgb
             case 'rgba':
                 return color.rgba
+            default:
+                return color.hex
         }
     }
 
     return (
         <CopyToClipboard 
-            text={color.hex}
+            text={setFormat()}
             onCopy={() => setCopied(true)}
         >
             <div style={{ background: setFormat() }} className={`${styles.color_box} ${singleClass}`}>

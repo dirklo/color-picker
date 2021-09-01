@@ -25,7 +25,10 @@ const SinglePalette: FC<SinglePaletteProps> = ({ palette }): JSX.Element => {
     }
     return (
         <div className={styles.single_palette}>
-            <SingleNavBar handleChange={changeFormat} format={format}/>
+            <SingleNavBar 
+                handleChange={changeFormat} 
+                format={format}
+            />
             <div className={styles.palette_colors}>
                 {colorBoxes}
                 <div 
