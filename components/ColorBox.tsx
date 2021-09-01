@@ -42,7 +42,7 @@ const ColorBox: FC<ColorBoxProps> = ({ color, format, singleColor }) => {
             text={color.hex}
             onCopy={() => setCopied(true)}
         >
-            <div style={{ background: setFormat()}} className={`${styles.color_box} ${singleClass}`}>
+            <div style={{ background: setFormat() }} className={`${styles.color_box} ${singleClass}`}>
                 <div 
                     style={{ background: setFormat() }} 
                     className={`${styles.copy_overlay} ${showClass}`}
@@ -66,7 +66,10 @@ const ColorBox: FC<ColorBoxProps> = ({ color, format, singleColor }) => {
                 {!singleColor && 
                     <span 
                         className={styles.see_more}
-                        onClick={() => router.push(`${router.asPath}/${color.id}`)}
+                        onClick={(e: React.MouseEvent): void => {
+                            e.stopPropagation()
+                            router.push(`${router.asPath}/${color.id}`)
+                        }}
                     >
                         More
                     </span>

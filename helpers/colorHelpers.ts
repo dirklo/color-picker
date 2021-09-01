@@ -12,6 +12,14 @@ interface newPalette {
     colors: {[key: number]: any}
 }
 
+interface shade {
+    name: string;
+    id: string;
+    hex: string;
+    rgb: string;
+    rgba: string;
+}
+
 function generatePalette(starterPalette: IsPalette): IsChromaPalette {
     let newPalette: newPalette = {
         paletteName: starterPalette.paletteName,
@@ -54,8 +62,8 @@ export function generateSinglePalette(starterPalette: IsPalette, matchColorId: s
     return singlePalette
 }
 
-function createShade(colorName: string, level: number, scaleItem: string) {
-    const shade = {
+function createShade(colorName: string, level: number, scaleItem: string): shade {
+    const shade: shade = {
         name: `${colorName} ${level}`,
         id: createColorId(colorName),
         hex: scaleItem,
