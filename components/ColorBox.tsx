@@ -4,6 +4,7 @@ import styles from '../styles/ColorBox.module.scss'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import IsChromaColor from './IsChromaColor'
 import { useRouter } from 'next/router'
+import chroma from 'chroma-js'
 
 interface ColorBoxProps {
     color: IsChromaColor;
@@ -23,9 +24,6 @@ const ColorBox: FC<ColorBoxProps> = ({ color, format, singleColor }) => {
         }, 1500)
     }, [copied])
 
-    const showClass: string = copied ? styles.show : '' 
-    const singleClass: string = singleColor ? styles.single : ''
-
     const setFormat = (): string => {
         switch (format) {
             case 'hex':
@@ -38,6 +36,13 @@ const ColorBox: FC<ColorBoxProps> = ({ color, format, singleColor }) => {
                 return color.hex
         }
     }
+
+    const showClass: string = copied ? styles.show : '' 
+    const singleClass: string = singleColor ? styles.single : ''
+    const isDarkColor: boolean = chroma(setFormat()).luminance() <= 0.08
+    const isLightColor: boolean = chroma(setFormat()).luminance() >= 0.7
+    const darkTextClass: string = isDarkColor ? styles.light_text : styles.dark_text
+    const lightTextClass: string = isLightColor ? styles.dark_text : styles.light_text
 
     return (
         <CopyToClipboard 
@@ -52,22 +57,22 @@ const ColorBox: FC<ColorBoxProps> = ({ color, format, singleColor }) => {
                 <div
                     className={`${styles.copy_msg} ${showClass}`}
                 >
-                    <h1>Copied!</h1>
-                    <p>{setFormat()}</p>
+                    <h1 className={darkTextClass}>Copied!</h1>
+                    <p className={darkTextClass}>{setFormat()}</p>
                 </div>
                 <div className={styles.copy_container}>
 
                 </div>
                 <div className={styles.box_content}>
-                    <span>{color.name}</span>
+                    <span className={darkTextClass}>{color.name}</span>
                 </div>
-                <button className={styles.copy_button}>
+                <button className={`${styles.copy_button} ${darkTextClass}`}>
                     Copy
                 </button>
 
                 {!singleColor && 
                     <span 
-                        className={styles.see_more}
+                        className={`${styles.see_more} ${lightTextClass}`}
                         onClick={(e: React.MouseEvent): void => {
                             e.stopPropagation()
                             router.push(`${router.asPath}/${color.id}`)
