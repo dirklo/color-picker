@@ -6,12 +6,16 @@ import { generateSinglePalette } from '../../helpers/colorHelpers'
 import isSinglePalette from '../../components/IsSinglePalette'
 import SingleNavBar from '../../components/SingleNavBar'
 import ColorBox from '../../components/ColorBox'
+import PaletteFooter from '../../components/PaletteFooter'
+import { useRouter } from 'next/router'
 
 type SinglePaletteProps = {
     palette: isSinglePalette;
 }
 
 const SinglePalette: FC<SinglePaletteProps> = ({ palette }): JSX.Element => {
+
+    const router = useRouter()
 
     const [ format, setFormat ] = useState('hex')
 
@@ -32,15 +36,16 @@ const SinglePalette: FC<SinglePaletteProps> = ({ palette }): JSX.Element => {
             <div className={styles.palette_colors}>
                 {colorBoxes}
                 <div 
-                    className={styles.back_button}
-                >  
-                    GO BACK
+                    className={styles.back_div}
+                >
+                    <button className={styles.back_button} onClick={() => {
+                        router.back()
+                    }}>
+                        GO BACK
+                    </button>
                 </div>
             </div>
-            <footer className={styles.palette_footer}>
-                <span>{palette.paletteName}</span>
-                <span className={styles.emoji}>{palette.emoji}</span>
-            </footer>
+            <PaletteFooter paletteName={palette.paletteName} emoji={palette.emoji} />
         </div>
     )
 }
