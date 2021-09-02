@@ -5,22 +5,15 @@ import { CopyToClipboard } from 'react-copy-to-clipboard'
 import IsChromaColor from './IsChromaColor'
 import { useRouter } from 'next/router'
 import chroma from 'chroma-js'
-import { withStyles } from '@material-ui/styles'
+import { lighten } from '@material-ui/core'
 
 interface ColorBoxProps {
     color: IsChromaColor;
     format: string;
     singleColor: boolean;
-    classes: any;
 }
 
-const classes = {
-    copyText: {
-        color: (props: any) => chroma(props.color.hex).luminance() >= 0.7 ? 'black' : 'white'
-    }
-}
-
-const ColorBox: FC<ColorBoxProps> = ({ color, format, singleColor, classes }) => {
+const ColorBox: FC<ColorBoxProps> = ({ color, format, singleColor }) => {
 
 
     const [ copied, setCopied ] = useState(false)
@@ -48,7 +41,7 @@ const ColorBox: FC<ColorBoxProps> = ({ color, format, singleColor, classes }) =>
 
     const showClass: string = copied ? styles.show : '' 
     const singleClass: string = singleColor ? styles.single : ''
-    const isDarkColor: boolean = chroma(setFormat()).luminance() <= 0.08
+    const isDarkColor: boolean = chroma(setFormat()).luminance() <= 0.2
     const isLightColor: boolean = chroma(setFormat()).luminance() >= 0.7
     const darkTextClass: string = isDarkColor ? styles.light_text : styles.dark_text
     const lightTextClass: string = isLightColor ? styles.dark_text : styles.light_text
@@ -67,13 +60,13 @@ const ColorBox: FC<ColorBoxProps> = ({ color, format, singleColor, classes }) =>
                     className={`${styles.copy_msg} ${showClass}`}
                 >
                     <h1 className={darkTextClass}>Copied!</h1>
-                    <p className={classes.copyText}>{setFormat()}</p>
+                    <p className={`${styles.copy_text} ${darkTextClass}`}>{setFormat()}</p>
                 </div>
                 <div className={styles.copy_container}>
 
                 </div>
                 <div className={styles.box_content}>
-                    <span className={darkTextClass}>{color.name}</span>
+                    <span className={`${styles.color_name} ${darkTextClass}`}>{color.name}</span>
                 </div>
                 <button className={`${styles.copy_button} ${darkTextClass}`}>
                     Copy
@@ -95,4 +88,4 @@ const ColorBox: FC<ColorBoxProps> = ({ color, format, singleColor, classes }) =>
     )
 }
 
-export default withStyles(classes)(ColorBox)
+export default ColorBox
