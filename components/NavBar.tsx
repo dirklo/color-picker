@@ -34,9 +34,7 @@ const NavBar: FC<NavBarProps> = ({ level, setLevel, handleChange, format }): JSX
             >
                 <Link href="/">reactcolorpicker</Link>
             </div>
-            <div
-                className={styles.slider_container}
-            >
+            <div>
                 <span>Level: {level}</span>
                 <div
                     className={styles.slider}

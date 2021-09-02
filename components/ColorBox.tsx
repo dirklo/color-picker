@@ -2,7 +2,7 @@ import type { FC } from 'react'
 import React, { useState } from 'react'
 import styles from '../styles/ColorBox.module.scss'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
-import IsChromaColor from './IsChromaColor'
+import IsChromaColor from '../types/IsChromaColor'
 import { useRouter } from 'next/router'
 import chroma from 'chroma-js'
 
@@ -12,7 +12,7 @@ interface ColorBoxProps {
     singleColor: boolean;
 }
 
-const ColorBox: FC<ColorBoxProps> = ({ color, format, singleColor }) => {
+const ColorBox: FC<ColorBoxProps> = ({ color, format, singleColor }): JSX.Element => {
 
     const [ copied, setCopied ] = useState(false)
 

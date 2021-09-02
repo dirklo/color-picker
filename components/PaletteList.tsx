@@ -1,6 +1,6 @@
 import type { FC } from 'react'
 import React from 'react'
-import IsPalette from './IsPalette'
+import IsPalette from '../types/IsPalette'
 import MiniPalette from './MiniPalette'
 import styles from '../styles/PaletteList.module.scss'
 import Link from 'next/link'

@@ -1,6 +1,6 @@
 import type { FC } from 'react'
 import React from 'react'
-import IsPalette from './IsPalette'
+import IsPalette from '../types/IsPalette'
 import styles from '../styles/MiniPalette.module.scss'
 import { useRouter } from 'next/router'
 

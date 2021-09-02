@@ -32,14 +32,6 @@ const NavBar: FC<SingleNavBarProps> = ({ handleChange, format }): JSX.Element =>
                 <Link href="/">reactcolorpicker</Link>
             </div>
             <div
-                className={styles.slider_container}
-            >
-                <div
-                    className={styles.slider}
-                >
-                </div>
-            </div>
-            <div
                 className={styles.select_container}
             >
                 <Select onChange={(event: ChangeEvent<{ value: unknown }>): void => handleFormatChange(event)} value={format}>
