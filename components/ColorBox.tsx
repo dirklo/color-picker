@@ -5,14 +5,23 @@ import { CopyToClipboard } from 'react-copy-to-clipboard'
 import IsChromaColor from './IsChromaColor'
 import { useRouter } from 'next/router'
 import chroma from 'chroma-js'
+import { withStyles } from '@material-ui/styles'
 
 interface ColorBoxProps {
     color: IsChromaColor;
     format: string;
     singleColor: boolean;
+    classes: any;
 }
 
-const ColorBox: FC<ColorBoxProps> = ({ color, format, singleColor }) => {
+const classes = {
+    copyText: {
+        color: 'purple'
+    }
+}
+
+const ColorBox: FC<ColorBoxProps> = ({ color, format, singleColor, classes }) => {
+
 
     const [ copied, setCopied ] = useState(false)
 
@@ -58,7 +67,7 @@ const ColorBox: FC<ColorBoxProps> = ({ color, format, singleColor }) => {
                     className={`${styles.copy_msg} ${showClass}`}
                 >
                     <h1 className={darkTextClass}>Copied!</h1>
-                    <p className={darkTextClass}>{setFormat()}</p>
+                    <p className={classes.copyText}>{setFormat()}</p>
                 </div>
                 <div className={styles.copy_container}>
 
@@ -86,4 +95,4 @@ const ColorBox: FC<ColorBoxProps> = ({ color, format, singleColor }) => {
     )
 }
 
-export default ColorBox
+export default withStyles(classes)(ColorBox)
