@@ -1,11 +1,10 @@
 import type { FC } from 'react'
-import React, {  useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import styles from '../styles/ColorBox.module.scss'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import IsChromaColor from './IsChromaColor'
 import { useRouter } from 'next/router'
 import chroma from 'chroma-js'
-import { lighten } from '@material-ui/core'
 
 interface ColorBoxProps {
     color: IsChromaColor;
@@ -15,16 +14,9 @@ interface ColorBoxProps {
 
 const ColorBox: FC<ColorBoxProps> = ({ color, format, singleColor }) => {
 
-
     const [ copied, setCopied ] = useState(false)
 
     const router = useRouter()
-
-    useEffect(() => {
-        setTimeout(() => {
-            setCopied(false)
-        }, 1500)
-    }, [copied])
 
     const setFormat = (): string => {
         switch (format) {
@@ -49,7 +41,12 @@ const ColorBox: FC<ColorBoxProps> = ({ color, format, singleColor }) => {
     return (
         <CopyToClipboard 
             text={setFormat()}
-            onCopy={() => setCopied(true)}
+            onCopy={() => {
+                setCopied(true)
+                setTimeout(() => {
+                    setCopied(false)
+                }, 1500)
+            }}
         >
             <div style={{ background: setFormat() }} className={`${styles.color_box} ${singleClass}`}>
                 <div 
@@ -68,7 +65,9 @@ const ColorBox: FC<ColorBoxProps> = ({ color, format, singleColor }) => {
                 <div className={styles.box_content}>
                     <span className={`${styles.color_name} ${darkTextClass}`}>{color.name}</span>
                 </div>
-                <button className={`${styles.copy_button} ${darkTextClass}`}>
+                <button 
+                    className={`${styles.copy_button} ${darkTextClass}`}
+                >
                     Copy
                 </button>
 
