@@ -16,7 +16,7 @@ interface ColorBoxProps {
 
 const classes = {
     copyText: {
-        color: 'purple'
+        color: (props: any) => chroma(props.color.hex).luminance() >= 0.7 ? 'black' : 'white'
     }
 }
 
