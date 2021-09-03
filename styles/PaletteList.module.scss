@@ -15,7 +15,20 @@
             display: flex;
             width: 100%;
             justify-content: space-between;
+            align-items: center;
             color: white;
+            .new_palette_button {
+                background: transparent;
+                color: white;
+                border: none;
+                cursor: pointer;
+                transition: all 0.3s ease-in-out;
+                text-decoration: underline;
+                &:hover {
+                    color: rgb(249, 253, 0);
+                    transform: scale(1.1);
+                }
+            }
         }
         .palettes {
             box-sizing: border-box;
