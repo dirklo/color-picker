@@ -20,14 +20,12 @@ const MiniPalette: FC<MiniPaletteProps> = ({ palette }): JSX.Element => {
 
     const router = useRouter();
     
-    const handleClick = (e: React.MouseEvent) => {
-        router.push(`/palettes/${palette.id}`)
-    }
-    
     return (
         <div 
             className={styles.mini_palette}
-            onClick={(e: React.MouseEvent) => handleClick(e)}
+            onClick={(e: React.MouseEvent) => {
+                router.push(`/palettes/${palette.id}`)
+            }}
         >
             <div 
                 className={styles.colors}
