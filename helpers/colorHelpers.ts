@@ -1,7 +1,7 @@
 import chroma from 'chroma-js'
-import IsChromaPalette from '../components/IsChromaPalette';
-import IsPalette from '../components/IsPalette'
-import IsSinglePalette from '../components/IsSinglePalette';
+import IsChromaPalette from '../types/IsChromaPalette'
+import IsPalette from '../types/IsPalette'
+import IsSinglePalette from '../types/IsSinglePalette';
 
 const levels: number[] = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
 
